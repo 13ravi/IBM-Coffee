@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { TopmenuComponent } from './topmenu/topmenu.component';
 import { LeftnavComponent } from './leftnav/leftnav.component';
 import {MatListModule} from '@angular/material/list';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+
 
 @NgModule({
   declarations: [
@@ -11,7 +14,9 @@ import {MatListModule} from '@angular/material/list';
   ],
   imports: [
     CommonModule,
-    MatListModule
+    MatListModule,
+    MatToolbarModule,
+    MatIconModule
   ],
   exports:[
     TopmenuComponent,
