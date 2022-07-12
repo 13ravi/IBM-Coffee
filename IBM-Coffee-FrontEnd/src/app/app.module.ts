@@ -6,7 +6,11 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from './layout/layout.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
-
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { CoffeeModule } from './coffee/coffee.module'; 
 
 
 @NgModule({
@@ -16,9 +20,12 @@ import {MatSidenavModule} from '@angular/material/sidenav';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LayoutModule, 
+    LayoutModule,
+    CoffeeModule, 
     MatSidenavModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [],
   bootstrap: [AppComponent]
