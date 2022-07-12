@@ -11,6 +11,10 @@ import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { CoffeeModule } from './coffee/coffee.module'; 
+import { RandomapiService } from './services/randomapi.service';
+import { HttpClientModule } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
+import { CoffeeEffects } from './coffee/store/effect/coffee.effects';
 
 
 @NgModule({
@@ -23,11 +27,14 @@ import { CoffeeModule } from './coffee/coffee.module';
     LayoutModule,
     CoffeeModule, 
     MatSidenavModule,
+    EffectsModule,
+    HttpClientModule, 
     BrowserAnimationsModule,
+    EffectsModule.forRoot([CoffeeEffects]),
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
-  providers: [],
+  providers: [RandomapiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
