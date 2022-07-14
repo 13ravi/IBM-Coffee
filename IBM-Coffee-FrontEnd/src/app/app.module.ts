@@ -7,23 +7,28 @@ import { LayoutModule } from './layout/layout.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { CoffeeModule } from './coffee/coffee.module'; 
 import { RandomapiService } from './services/randomapi.service';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MaterialModule } from './shared/material/material.module';
+import { CoffeeListComponent } from './coffee-list/coffee-list.component';
+// import { StoreModule } from '@ngrx/store';
+import { StorageModule } from './store/storage.module';
+import { Store } from '@ngrx/store';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CoffeeListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     LayoutModule,
-    CoffeeModule, 
     MatSidenavModule,
     HttpClientModule, 
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule,
+    StorageModule
   ],
   providers: [RandomapiService],
   bootstrap: [AppComponent]

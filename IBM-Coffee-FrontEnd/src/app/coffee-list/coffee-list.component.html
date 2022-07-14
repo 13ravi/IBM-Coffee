@@ -1,0 +1,82 @@
+
+<div class="coffee-content">
+    <div class="table-header">
+        <div class="dc-h3 header">
+          Coffees ({{coffeeTotal}})
+        </div>
+        <div class="search-bar">
+          <input class="dc-search" placeholder="Search Coffee" (keyup)="filterSubject.next($any($event.target).value)">
+        </div>
+      </div>
+     
+
+  <div class="table-container">
+    <table mat-table class="table" [dataSource]="dataSource" matSort matSortDisableClear="true"
+      [matSortActive]="defaultSort.active" [matSortDirection]="defaultSort.direction">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>Id</th>
+        <td mat-cell class="dc-content" *matCellDef="let element">{{element.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="uid">
+        <th mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>uid</th>
+        <td mat-cell class="dc-content" *matCellDef="let element">{{element.uid}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="blend_name">
+        <th mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>Blend Name</th>
+        <td mat-cell class="dc-content" *matCellDef="let element"> {{ element.blend_name }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="origin">
+        <th mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>origin</th>
+        <td mat-cell class="dc-content" *matCellDef="let element">{{element.origin}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="variety">
+          <th mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>Variety</th>
+          <td mat-cell class="dc-content" *matCellDef="let element">{{element.variety}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="notes">
+            <th mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>Notes</th>
+            <td mat-cell class="dc-content" *matCellDef="let element">{{element.notes}} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="intensifier">
+            <th mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>Intensifier</th>
+            <td mat-cell class="dc-content" *matCellDef="let element">{{element.intensifier}} </td>
+          </ng-container>
+
+
+      <ng-container matColumnDef="noData">
+        <td mat-cell class="dc-label no-data-cell" *matCellDef="let element"
+          [attr.colspan]="displayedColumns.length">
+          <ng-container *ngIf="!(error$ | async) && !loading">
+            <span class="dc-content">No Coffees</span>
+          </ng-container>
+          <ng-container *ngIf="(error$ | async) && !loading">
+            <span class="dc-label">System Failure</span>
+            <span class="dc-content">Error</span>
+            <span class="retry" (click)="retry()">Retry</span>
+          </ng-container>
+          <ng-container *ngIf="loading">
+              <span class="dc-label">Retrieving data...</span>  
+            </ng-container>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns, sticky: true"></tr>
+      <ng-container *ngIf="coffeeTotal && !loading">
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="coffee-row"></tr>
+      </ng-container>
+      <ng-container *ngIf="!coffeeTotal || loading">
+        <tr mat-row *matRowDef="let row; columns: ['noData'];"class="no-data-row" ></tr>
+      </ng-container>
+    </table>
+
+    <mat-paginator [length]="coffeeTotal" [pageSize]="10"  [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
+  </div>
+</div>

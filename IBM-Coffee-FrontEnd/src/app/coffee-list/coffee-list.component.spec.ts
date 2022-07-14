@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListCoffeeComponent } from './list-coffee.component';
+import { CoffeeListComponent } from './coffee-list.component';
 
-describe('ListCoffeeComponent', () => {
-  let component: ListCoffeeComponent;
-  let fixture: ComponentFixture<ListCoffeeComponent>;
+describe('CoffeeListComponent', () => {
+  let component: CoffeeListComponent;
+  let fixture: ComponentFixture<CoffeeListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListCoffeeComponent ]
+      declarations: [ CoffeeListComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ListCoffeeComponent);
+    fixture = TestBed.createComponent(CoffeeListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
