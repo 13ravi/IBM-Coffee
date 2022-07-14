@@ -13,21 +13,14 @@ import { CoffeeResponse } from '../models/coffee-response';
 
 export class RandomapiService {
 
-//   http: HttpClient;
- // readonly baseUrl ='https://random-data-api.com/api';
-
-//   constructor(http: HttpClient) {
-//     this.http = http;
-//   }
-
-//   getCoffees(): Observable<Coffee[]> {
-//     return this.http.get<Coffee[]>(this.baseUrl + '/coffee/random_coffee?size=10');
-//   }
-// }
+ readonly baseUrl ='https://random-data-api.com/api';
 
 constructor(private httpClient: HttpClient) { }
 
+
 public getCoffees(params: CoffeeParams): Observable<CoffeeResponse> {
+ 
+  this.loadCoffees();
   return of(this.getFakeCoffees(params)).pipe(delay(3000));
 }
 
@@ -50,56 +43,35 @@ private getFakeCoffees(params: CoffeeParams): CoffeeResponse {
   };
 }
 
+private loadCoffees(){
+
+  coffees: this.httpClient.get<Coffee[]>(this.baseUrl + '/coffee/random_coffee?size=50');
+
+  return true;
+}
 
 }
 
-
+// const coffees = <Coffee[]>[];
 
 const coffees = <Coffee[]>[
   <Coffee>{
-    id:'sdfdfds',
-    uid:'asdasdsa',
-    blend_name:'string',
-    origin:'string',
-    variety:'string',
-    notes:'string',
-    intensifier:'string'
+    id:'3481',
+    uid:'9f65fceb-96f5-4c5f-8e51-fc2703ac3a8c',
+    blend_name:"The Captain's Cake",
+    origin:"Boyacá, Colombia",
+    variety:"SL28",
+    notes:"rounded, juicy, almond, sundried tomato, rubber",
+    intensifier:"astringent"
   },
   <Coffee>{
-    id:'sdfdfds',
-    uid:'asdasdsa',
-    blend_name:'string',
-    origin:'string',
-    variety:'string',
-    notes:'string',
-    intensifier:'string'
-  },
-  <Coffee>{
-    id:'sdfdfds',
-    uid:'asdasdsa',
-    blend_name:'string',
-    origin:'string',
-    variety:'string',
-    notes:'string',
-    intensifier:'string'
-  },
-  <Coffee>{
-    id:'sdfdfds',
-    uid:'asdasdsa',
-    blend_name:'string',
-    origin:'string',
-    variety:'string',
-    notes:'string',
-    intensifier:'string'
-  },
-  <Coffee>{
-    id:'sdfdfds',
-    uid:'asdasdsa',
-    blend_name:'string',
-    origin:'string',
-    variety:'string',
-    notes:'string',
-    intensifier:'string'
-  },
+  id:'3481',
+  uid:'9f65fceb-96f5-4c5f-8e51-fc2703ac3a8c',
+  blend_name:"The Captain's Cake",
+  origin:"Boyacá, Colombia",
+  variety:"SL28",
+  notes:"rounded, juicy, almond, sundried tomato, rubber",
+  intensifier:"astringent"
+  }
 ];
 

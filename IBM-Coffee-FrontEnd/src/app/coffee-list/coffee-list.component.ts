@@ -86,6 +86,8 @@ export class CoffeeListComponent  implements OnInit, OnDestroy, AfterViewInit
       tap(() => (this.paginator.pageIndex = 0))
     );
 
+
+
     this.subscription.add(
       merge(filter$, sort$, this.paginator.page)
         .pipe(tap(() => this.loadCoffees()))
