@@ -44,11 +44,17 @@ private getFakeCoffees(params: CoffeeParams): CoffeeResponse {
 }
 
 private loadCoffees(){
-
   coffees: this.httpClient.get<Coffee[]>(this.baseUrl + '/coffee/random_coffee?size=50');
-
   return true;
 }
+
+getData() {
+  return this.httpClient.get<Coffee>(this.baseUrl + '/coffee/random_coffee?size=50').pipe(
+    map(data => { return data
+    }),
+  );
+}
+
 
 }
 
